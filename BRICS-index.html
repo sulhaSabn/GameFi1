@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<meta name="description" content="BRICS ULTRA PRO - پلتفرم بازی، رقابت و پاداش">
+<title>BRICS ULTRA PRO</title>
+<style>
+*{box-sizing:border-box} :root{--bg:#f4f6fb;--card:#fff;--text:#111827;--muted:#6b7280;--primary:#4f46e5;--primary2:#7c3aed;--border:#e5e7eb;--danger:#dc2626;--success:#059669;--warn:#d97706;--shadow:0 8px 28px rgba(15,23,42,.07)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}
+#loading{position:fixed;inset:0;background:#111827;color:#fff;display:flex;align-items:center;justify-content:center;z-index:100;font-size:18px;text-align:center;padding:20px}.loading-box{width:min(430px,92%);background:#172033;border:1px solid #334155;border-radius:20px;padding:26px}.spinner{width:34px;height:34px;border:3px solid #475569;border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px}@keyframes spin{to{transform:rotate(360deg)}}
+.app{max-width:560px;margin:auto;min-height:100vh;padding-bottom:86px}.top{position:sticky;top:0;z-index:10;background:rgba(244,246,251,.95);backdrop-filter:blur(12px);padding:13px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.logo{font-size:23px;font-weight:900;color:var(--primary)}.status{font-size:11px;color:var(--success)}main{padding:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}h1,h2,h3,p{margin-top:0}h2{font-size:20px;margin-bottom:14px}h3{font-size:16px}.muted{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{padding:15px;border-radius:15px;background:#f8fafc;border:1px solid var(--border)}.stat b{display:block;font-size:20px;margin-top:6px}label{display:block;font-size:13px;margin:12px 0 6px}input,select{width:100%;padding:12px 13px;border:1px solid #d1d5db;border-radius:12px;background:#fff;outline:none}input:focus,select:focus{border-color:var(--primary)}input:disabled{background:#f8fafc;color:#64748b}.btn{width:100%;padding:12px;border-radius:12px;background:var(--primary);color:#fff;font-weight:700;margin-top:10px}.btn.secondary{background:#eef2ff;color:#4338ca}.btn.success{background:var(--success)}.btn.danger{background:var(--danger)}.btn.warning{background:#fff7ed;color:#c2410c}.btn:disabled{opacity:.55;cursor:not-allowed}.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.balance{font-size:32px;font-weight:900}.item{padding:13px 0;border-bottom:1px solid var(--border)}.item:last-child{border-bottom:0}.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#eef2ff;color:#4338ca;font-size:11px}.badge.success{background:#ecfdf5;color:#047857}.badge.warn{background:#fffbeb;color:#b45309}.badge.danger{background:#fef2f2;color:#b91c1c}.empty{text-align:center;color:var(--muted);padding:22px}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);background:#fff;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(5,1fr);z-index:20;padding-bottom:env(safe-area-inset-bottom)}.bottom button{background:#fff;color:#6b7280;padding:9px 2px;font-size:10px;min-width:62px}.bottom button.active{color:var(--primary);font-weight:800}.icon{font-size:18px;display:block;margin-bottom:2px}.toast{position:fixed;bottom:94px;left:50%;transform:translateX(-50%);width:min(92%,500px);padding:12px 15px;border-radius:12px;background:#111827;color:#fff;text-align:center;z-index:120;box-shadow:var(--shadow)}.auth{min-height:100vh;display:flex;align-items:center;padding:20px}.auth .card{width:100%;max-width:480px;margin:auto}.auth-title{text-align:center;margin-bottom:20px}.auth-title .logo{font-size:38px}.small{font-size:11px}.link{color:var(--primary);cursor:pointer;font-weight:700}.game-score{text-align:center;font-size:42px;font-weight:900;padding:15px}.timer{text-align:center;font-size:13px;color:var(--warn);margin-bottom:8px}.hero{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border:0}.hero .muted{color:#e0e7ff}.admin-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.admin-box{padding:14px;border:1px solid var(--border);border-radius:14px;background:#f8fafc}.admin-box b{display:block;font-size:20px;margin-top:5px}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{padding:9px;border-bottom:1px solid var(--border);text-align:right;white-space:nowrap}.search-row{display:flex;gap:8px}.search-row input{flex:1}.config{position:fixed;inset:0;background:rgba(15,23,42,.65);z-index:150;display:flex;align-items:center;justify-content:center;padding:18px}.config .card{width:min(480px,100%);margin:0}.notice{padding:11px 12px;border-radius:12px;background:#fff7ed;color:#9a3412;font-size:12px;margin-top:10px}.success-note{padding:11px 12px;border-radius:12px;background:#ecfdf5;color:#047857;font-size:12px;margin-top:10px}
+@media(max-width:380px){.grid,.admin-grid{grid-template-columns:1fr}.row{flex-direction:column}.row>*{width:100%}}
+.ad-slot{background:linear-gradient(135deg,#eef2ff,#f5f3ff);border:1px dashed #a5b4fc;border-radius:16px;padding:14px;margin-bottom:14px;text-align:center;min-height:80px}.ad-slot .ad-label{font-size:10px;color:#6366f1;margin-bottom:6px}.ad-slot small{display:block;color:var(--muted);margin-top:5px}.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.game-card .game-icon{font-size:32px}.game-card .game-meta{font-size:11px;color:var(--muted);min-height:34px}.game-category{display:inline-block;border:1px solid var(--border);background:#fff;border-radius:999px;padding:7px 10px;font-size:11px;margin:0 4px 6px 0}.game-category.active{background:#eef2ff;color:#4338ca;border-color:#c7d2fe}.game-search{margin-bottom:10px}.autosave{font-size:11px;color:var(--success);text-align:center;margin-top:8px}.mini-game{padding:10px;border:1px solid var(--border);border-radius:14px;margin-top:10px;text-align:center}</style>
+
+<style>
+/* BRICS Pro UI */
+:root{
+  --bg:#eef2ff;--card:#ffffff;--text:#0f172a;--muted:#64748b;
+  --primary:#4f46e5;--primary2:#7c3aed;--border:#e2e8f0;
+  --shadow:0 12px 34px rgba(15,23,42,.09)
+}
+body{background:radial-gradient(circle at 10% 0%,#e0e7ff 0,#eef2ff 28%,#f8fafc 70%);min-height:100vh}
+.top{box-shadow:0 4px 18px rgba(15,23,42,.05)}
+.logo{letter-spacing:.4px}
+.card{transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{box-shadow:0 15px 38px rgba(15,23,42,.11)}
+.hero{background:linear-gradient(135deg,#312e81 0%,#4f46e5 48%,#7c3aed 100%);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.09);left:-55px;top:-55px}
+.game-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.game-card{position:relative;overflow:hidden}
+.game-card .game-icon{font-size:38px;margin-bottom:7px}
+.game-card .game-title-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.game-card .play-label{font-size:11px;color:#4f46e5;font-weight:800}
+.game-card .game-meta{line-height:1.8}
+.game-card .btn{margin-top:12px}
+.game-featured{border:1px solid #c7d2fe;background:linear-gradient(135deg,#fff,#eef2ff)}
+.game-chip{display:inline-flex;align-items:center;gap:5px;background:#f8fafc;border:1px solid var(--border);border-radius:999px;padding:5px 9px;font-size:10px;color:#475569}
+.progress{height:8px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin-top:8px}
+.progress>span{display:block;height:100%;background:linear-gradient(90deg,#4f46e5,#8b5cf6);border-radius:inherit;width:0;transition:width .25s}
+.game-board{background:#0f172a;color:#fff;border-radius:18px;padding:16px;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.big-game-btn{width:145px;height:145px;border-radius:50%;font-size:28px;font-weight:900;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;box-shadow:0 14px 35px rgba(79,70,229,.35);border:5px solid rgba(255,255,255,.15)}
+.big-game-btn:active{transform:scale(.95)}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:330px}
+.memory-card{aspect-ratio:1;border-radius:12px;background:#334155;color:transparent;font-size:22px;font-weight:900;border:1px solid #475569}
+.memory-card.open,.memory-card.done{background:#fff;color:#111827}
+.reaction-zone{width:100%;height:170px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:#334155;font-size:20px;font-weight:900}
+.reaction-zone.ready{background:#059669}
+.reaction-zone.wait{background:#b91c1c}
+.target-board{position:relative;width:100%;height:210px;border-radius:18px;background:#111827;overflow:hidden}
+.target-dot{position:absolute;width:48px;height:48px;border-radius:50%;background:#f43f5e;border:4px solid #fff;box-shadow:0 5px 18px rgba(0,0,0,.25)}
+.number-options{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%}
+.number-options button{padding:13px;border-radius:12px;background:#fff;color:#111827;font-weight:800}
+.game-result{font-size:13px;color:#cbd5e1;text-align:center;min-height:22px}
+@media(max-width:380px){.game-grid{grid-template-columns:1fr}.memory-grid{max-width:280px}}
+</style>
+
+
+<style>
+/* ===== BRICS ULTRA UI ===== */
+body{background:#070b16;color:#e5e7eb}
+.app{background:linear-gradient(180deg,#0b1020 0,#0f172a 52%,#080c16 100%);min-height:100vh}
+.top{background:rgba(7,11,22,.82);border-bottom:1px solid rgba(148,163,184,.12);backdrop-filter:blur(18px)}
+.logo{color:#a78bfa;text-shadow:0 0 25px rgba(139,92,246,.25)}
+.status{color:#34d399}
+main{padding:16px}
+.card{background:linear-gradient(145deg,rgba(30,41,59,.9),rgba(15,23,42,.92));border:1px solid rgba(148,163,184,.13);box-shadow:0 14px 40px rgba(0,0,0,.22);color:#e5e7eb}
+.muted{color:#94a3b8}
+.stat{background:rgba(30,41,59,.62);border-color:rgba(148,163,184,.12)}
+input,select{background:#111827;color:#f8fafc;border-color:#334155}
+input::placeholder{color:#64748b}
+.bottom{background:rgba(8,12,22,.94);border-top:1px solid rgba(148,163,184,.13);backdrop-filter:blur(18px)}
+.bottom button{background:transparent;color:#64748b}
+.bottom button.active{color:#a78bfa}
+.btn{background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 8px 22px rgba(99,102,241,.2)}
+.btn.secondary{background:#1e293b;color:#c4b5fd;border:1px solid #334155}
+.hero{background:radial-gradient(circle at 90% 10%,rgba(168,85,247,.4),transparent 32%),linear-gradient(135deg,#1e1b4b,#312e81 48%,#4c1d95)}
+.ultra-hero{position:relative;overflow:hidden;padding:20px;border-radius:22px}
+.ultra-hero:before,.ultra-hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);background:rgba(167,139,250,.14)}
+.ultra-hero:before{width:180px;height:180px;left:-70px;top:-80px}.ultra-hero:after{width:120px;height:120px;right:-30px;bottom:-50px}
+.xpbar{height:10px;border-radius:99px;background:#1e293b;overflow:hidden;margin:9px 0}
+.xpbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#22d3ee,#8b5cf6,#ec4899);transition:width .4s}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px}
+.section-title h3{margin:0}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid #334155;background:#111827;border-radius:999px;padding:6px 10px;font-size:10px;color:#cbd5e1}
+.dashboard-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.mini-stat{padding:14px;border-radius:16px;background:linear-gradient(145deg,#111827,#172033);border:1px solid #263244}
+.mini-stat .big{font-size:21px;font-weight:900;margin-top:4px}
+.action-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.action{background:#111827;border:1px solid #293548;border-radius:15px;padding:12px 5px;text-align:center;color:#cbd5e1}
+.action b{display:block;font-size:22px;margin-bottom:5px}
+.daily{background:linear-gradient(135deg,#172554,#3b0764);border:1px solid #4c1d95}
+.daily-reward{font-size:28px;font-weight:900;color:#fbbf24}
+.leader-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #1e293b}
+.leader-row:last-child{border-bottom:0}
+.rank{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#1e293b;font-weight:900}
+.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#4f46e5,#a855f7);font-weight:900}
+.leader-points{margin-right:auto;font-weight:900;color:#a78bfa}
+.mission{padding:13px;border-radius:15px;background:#111827;border:1px solid #273449;margin-bottom:9px}
+.mission-top{display:flex;justify-content:space-between;gap:8px}
+.mission .xp{color:#fbbf24;font-weight:900}
+.game-card{background:linear-gradient(145deg,#111827,#0f172a);border-color:#263244}
+.game-card:hover{transform:translateY(-2px);border-color:#6366f1}
+.badge{background:#1e1b4b;color:#c4b5fd;border:1px solid #3730a3}
+.badge.success{background:#052e2b;color:#6ee7b7;border-color:#065f46}
+.badge.warn{background:#3b2506;color:#fbbf24;border-color:#92400e}
+.empty{color:#64748b}
+.glow-btn{animation:pulseGlow 2.2s infinite}
+@keyframes pulseGlow{0%,100%{box-shadow:0 8px 22px rgba(99,102,241,.18)}50%{box-shadow:0 8px 35px rgba(139,92,246,.45)}}
+@media(max-width:390px){.action-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+
+<style id="brics-pro-style">
+/* ===== BRICS ULTRA PRO ===== */
+:root{--pro1:#8b5cf6;--pro2:#22d3ee;--pro3:#ec4899;--glass:rgba(15,23,42,.72)}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 10%,rgba(139,92,246,.08),transparent 28%),radial-gradient(circle at 90% 75%,rgba(34,211,238,.06),transparent 30%);z-index:-1}
+.pro-shell{display:grid;gap:12px;margin-top:14px}.pro-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pro-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(30,41,59,.78),rgba(15,23,42,.9));border:1px solid rgba(148,163,184,.14);border-radius:18px;padding:15px;box-shadow:0 14px 40px rgba(0,0,0,.2)}
+.pro-card:before{content:"";position:absolute;width:100px;height:100px;border-radius:50%;right:-50px;top:-50px;background:rgba(139,92,246,.12);filter:blur(2px)}
+.pro-kicker{font-size:11px;color:#a5b4fc;letter-spacing:.4px}.pro-value{font-size:23px;font-weight:900;margin-top:5px}.pro-sub{font-size:12px;color:#94a3b8;margin-top:3px}
+.pro-ach{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid rgba(148,163,184,.1);border-radius:14px;background:rgba(2,6,23,.25)}.pro-ach .ico{font-size:24px}.pro-ach.locked{opacity:.45;filter:grayscale(1)}
+.pro-meter{height:7px;background:#1e293b;border-radius:99px;overflow:hidden;margin-top:9px}.pro-meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pro2),var(--pro1),var(--pro3));border-radius:99px;transition:width .5s}
+.pro-game-badge{position:absolute;left:12px;top:12px;font-size:10px;padding:4px 7px;border-radius:999px;background:rgba(139,92,246,.14);border:1px solid rgba(167,139,250,.2);color:#c4b5fd}
+.pro-game-btn{min-height:100px;border-radius:22px;border:1px solid rgba(148,163,184,.13);background:radial-gradient(circle at 50% 20%,rgba(139,92,246,.2),rgba(15,23,42,.9));color:#fff;font-size:38px;font-weight:900;box-shadow:inset 0 1px rgba(255,255,255,.04);transition:.15s;cursor:pointer}.pro-game-btn:active{transform:scale(.97)}
+.pro-choice{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.pro-choice button{padding:13px;border-radius:14px;border:1px solid #334155;background:#111827;color:#e5e7eb;cursor:pointer}.pro-choice button:hover{border-color:#8b5cf6}
+.pro-topline{display:flex;align-items:center;justify-content:space-between;gap:8px}.pro-live{display:inline-flex;align-items:center;gap:5px;color:#6ee7b7;font-size:11px}.pro-live i{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 12px #34d399}
+@media(max-width:560px){.pro-grid{grid-template-columns:1fr}.pro-card{border-radius:16px}}
+</style>
+</head>
+<body>
+<div id="loading"><div class="loading-box"><div class="spinner"></div><b>BRICS</b><p id="loadingText" style="margin:10px 0 0;color:#cbd5e1">در حال اتصال به سرور...</p><button id="loadingRetry" class="btn secondary hidden" onclick="openConfig()">تنظیم اتصال</button></div></div>
+<div id="toast" class="toast hidden"></div>
+<section id="auth" class="auth hidden"><div class="card"><div class="auth-title"><div class="logo">BRICS</div><p class="muted">پلتفرم بازی، رقابت و پاداش</p><span class="pill">BRICS ULTRA · v2</span></div>
+<div id="loginBox"><h2>ورود</h2><label>ایمیل</label><input id="loginEmail" type="email" autocomplete="email" placeholder="example@email.com"><label>رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="رمز عبور"><button class="btn" onclick="login()">ورود به حساب</button><p class="muted" style="text-align:center;margin-top:15px">حساب ندارید؟ <span class="link" onclick="showRegister()">ثبت‌نام</span></p></div>
+<div id="registerBox" class="hidden"><h2>ثبت‌نام</h2><label>نام کاربری</label><input id="regUsername" placeholder="نام کاربری"><label>ایمیل</label><input id="regEmail" type="email" placeholder="example@email.com"><label>رمز عبور</label><input id="regPassword" type="password" placeholder="حداقل ۸ کاراکتر"><label>کد دعوت (اختیاری)</label><input id="regReferral" placeholder="کد دعوت"><button class="btn" onclick="register()">ساخت حساب</button><p class="muted" style="text-align:center;margin-top:15px">حساب دارید؟ <span class="link" onclick="showLogin()">ورود</span></p></div>
+<p class="muted small" style="text-align:center;margin:18px 0 0">اتصال امن به سرور BRICS فعال است.</p></div></section>
+<section id="app" class="app hidden"><header class="top"><div><div class="logo">BRICS</div><div id="connection" class="status">در حال اتصال</div></div><button class="btn secondary" style="width:auto;margin:0;padding:8px 12px" onclick="logout()">خروج</button></header>
+<main>
+<section id="page-home">
+  <div class="ultra-hero hero card">
+    <div class="row">
+      <div><div class="muted">موجودی قابل استفاده</div><div id="homeBalance" class="balance">0</div></div>
+      <div class="pill">💎 BRICS</div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div style="flex:2"><div class="muted">سطح <b id="level">1</b> · تجربه</div><div class="xpbar"><span id="xpFill"></span></div></div>
+      <div class="pill">🔥 <span id="streak">0</span> روز</div>
+    </div>
+  </div>
+
+  <div class="section-title"><h3>⚡ دسترسی سریع</h3><span class="muted">امروز</span></div>
+  <div class="action-grid">
+    <button class="action" onclick="go('games')"><b>🎮</b>بازی</button>
+    <button class="action" onclick="go('games');setTimeout(scrollToAds,100)"><b>📺</b>تبلیغات</button>
+    <button class="action" onclick="go('wallet')"><b>💰</b>کیف پول</button>
+    <button class="action" onclick="go('profile')"><b>👤</b>پروفایل</button>
+  </div>
+
+  <div class="section-title"><h3>📊 آمار حساب</h3></div>
+  <div class="dashboard-grid">
+    <div class="mini-stat"><span class="muted">کل درآمد</span><div id="bestScore" class="big">0</div></div>
+    <div class="mini-stat"><span class="muted">تعداد بازی</span><div id="gamesPlayed" class="big">0</div></div>
+    <div class="mini-stat"><span class="muted">کل برداشت</span><div id="usdtBalance" class="big">0</div></div>
+    <div class="mini-stat"><span class="muted">بهترین رکورد</span><div id="bestRecord" class="big">0</div></div>
+  </div>
+
+  <div class="card daily" style="margin-top:14px">
+    <div class="row"><div><h3>📺 پاداش تبلیغات</h3><p class="muted">تبلیغات فعال را ببین و امتیاز واقعی را در حساب خود دریافت کن.</p></div><div class="daily-reward">💰</div></div>
+    <button class="btn glow-btn" onclick="go('games');setTimeout(scrollToAds,100)">مشاهده تبلیغات</button>
+  </div>
+
+  <div class="section-title"><h3>🏆 جدول افتخارات</h3><span class="muted">برترین‌ها</span></div>
+  <div class="card" id="leaderboard">
+    <div class="leader-row"><div class="rank">1</div><div class="avatar">👑</div><div><b>BRICS Master</b><div class="muted">قهرمان هفته</div></div><div class="leader-points">9,850</div></div>
+    <div class="leader-row"><div class="rank">2</div><div class="avatar">⚡</div><div><b>Speed King</b><div class="muted">بازی‌های سریع</div></div><div class="leader-points">8,420</div></div>
+    <div class="leader-row"><div class="rank">3</div><div class="avatar">🎯</div><div><b>Target Pro</b><div class="muted">هدف‌گیری</div></div><div class="leader-points">7,910</div></div>
+  </div>
+
+  <div class="section-title"><h3>🎯 مأموریت‌های امروز</h3></div>
+  <div class="mission"><div class="mission-top"><b>۳ بازی انجام بده</b><span class="xp">+30 XP</span></div><div class="muted">پیشرفت: <span id="missionGames">0</span>/3</div></div>
+  <div class="mission"><div class="mission-top"><b>یک رکورد جدید ثبت کن</b><span class="xp">+50 XP</span></div><div class="muted">با هر یک از بازی‌های داخلی قابل انجام است.</div></div>
+</section>
+<section id="page-games" class="hidden">
+<h2>🎮 مرکز بازی BRICS</h2>
+<div class="card game-featured">
+  <div class="row"><div><b>بازی‌های مهارتی</b><div class="muted">بازی کن، رکورد بزن و نتیجه را ثبت کن.</div></div><span class="badge success">LIVE</span></div>
+  <div class="progress"><span id="gamesProgress"></span></div>
+</div>
+<div id="adsArea" class="card"><div class="row"><div><h3>📺 تبلیغات روزانه</h3><div class="muted">هر تبلیغ طبق تنظیمات مدیر فقط در محدوده مجاز پاداش می‌دهد.</div></div><span class="badge success">LIVE</span></div><div id="adsList" style="margin-top:10px"><div class="empty">در حال بارگذاری تبلیغات...</div></div></div>
+<input id="gameSearch" class="game-search" placeholder="🔎 جستجوی بازی..." oninput="renderGames()">
+<div id="gameCategories"></div>
+<div id="gamesList"></div>
+<div id="activeGame" class="card hidden">
+  <div class="row"><h3 id="activeGameTitle">بازی</h3><span id="gameTimer" class="badge">00:00</span></div>
+  <div id="gameScore" class="game-score">0</div>
+  <p id="gameInstruction" class="muted">بازی را انجام دهید.</p>
+  <div id="miniGameArea"></div>
+  <button id="completeBtn" class="btn success" onclick="completeGame()">ثبت نتیجه</button>
+  <button class="btn danger" onclick="cancelGame()">خروج</button>
+  <div class="autosave">✓ وضعیت بازی به‌صورت خودکار مدیریت می‌شود</div>
+</div>
+<div class="ad-slot"><div class="ad-label">تبلیغات</div><b>فضای تبلیغاتی</b></div>
+</section>
+<section id="page-wallet" class="hidden"><h2>کیف پول</h2><div class="card"><div class="muted">موجودی امتیاز</div><div id="walletBalance" class="balance">0</div><div class="muted">ارزش: <b id="walletUsd">$0.000000</b> — هر ۱۰۰۰ امتیاز = $0.001</div></div><div class="card"><h3>درخواست برداشت</h3><label>مقدار امتیاز</label><input id="withdrawAmount" type="number" min="1" step="1" placeholder="مقدار"><label>آدرس کیف پول مقصد</label><input id="withdrawAddress" placeholder="آدرس کیف پول مقصد"><button class="btn" onclick="withdraw()">ثبت درخواست برداشت</button><p class="muted small">برداشت ابتدا در وضعیت «در انتظار» قرار می‌گیرد و پس از بررسی مدیر پرداخت می‌شود.</p></div><div class="card"><h3>تاریخچه برداشت</h3><div id="withdrawals"></div></div></section>
+<section id="page-history" class="hidden"><h2>تاریخچه تراکنش‌ها</h2><div class="card"><div id="transactions"></div></div></section>
+<section id="page-profile" class="hidden"><h2>پروفایل</h2><div class="card"><label>نام کاربری</label><input id="profileUsername"><label>ایمیل</label><input id="profileEmail" type="email" disabled><label>کد دعوت شما</label><div class="row"><input id="referralCode" readonly><button class="btn secondary" style="margin:0" onclick="copyReferral()">کپی</button></div><div id="profileAutosave" class="autosave">✓ تغییرات پروفایل به‌صورت خودکار ذخیره می‌شود</div></div></section>
+<section id="page-admin" class="hidden"><h2>مدیریت</h2><div class="admin-grid" id="adminStats"></div><div class="card"><h3>برداشت‌ها</h3><div id="adminWithdrawals"></div></div><div class="card"><h3>کاربران</h3><div class="search-row"><input id="adminSearch" placeholder="جستجوی نام کاربری یا ایمیل"><button class="btn secondary" style="width:auto;margin:0" onclick="loadAdminUsers()">جستجو</button></div><div id="adminUsers" style="margin-top:12px"></div></div><div class="card"><h3>بازی‌ها</h3><div id="adminGames"></div><hr><h3>افزودن بازی</h3><label>نام</label><input id="newGameName" placeholder="نام بازی"><label>Slug</label><input id="newGameSlug" placeholder="game-name"><label>پاداش هر بازی</label><input id="newGamePoints" type="number" min="0" value="5"><label>محدودیت روزانه</label><input id="newGameLimit" type="number" min="0" value="10"><label>حداکثر پاداش روزانه</label><input id="newGameMax" type="number" min="0" value="50"><button class="btn" onclick="createAdminGame()">ایجاد بازی</button></div><div class="card"><h3>📺 مدیریت تبلیغات</h3><label>عنوان تبلیغ</label><input id="newAdTitle" placeholder="مثلاً تبلیغ روزانه ۱"><label>لینک تبلیغ</label><input id="newAdUrl" type="url" placeholder="https://..."><label>پاداش امتیاز</label><input id="newAdPoints" type="number" min="0" value="25"><label>زمان مشاهده (ثانیه)</label><input id="newAdSeconds" type="number" min="3" value="15"><label>تعداد دریافت روزانه برای هر کاربر</label><input id="newAdDaily" type="number" min="1" value="1"><button class="btn" onclick="createAdminAd()">➕ افزودن تبلیغ</button><div id="adminAds" style="margin-top:12px"></div></div><div class="card"><h3>Reward Pool</h3><div id="adminPool"></div><div class="row"><input id="poolRevenue" type="number" min="0" placeholder="درآمد"><input id="poolExpenses" type="number" min="0" placeholder="هزینه"></div><div class="row"><input id="poolUserShare" type="number" min="0" max="100" value="40" placeholder="سهم کاربران %"><input id="poolOwnerShare" type="number" min="0" max="100" value="40" placeholder="سهم مالک %"></div><button class="btn" onclick="savePool()">ذخیره Reward Pool</button></div></section>
+</main><nav class="bottom" id="bottomNav"><button data-page="home" onclick="go('home')"><span class="icon">⌂</span>خانه</button><button data-page="games" onclick="go('games')"><span class="icon">🎮</span>بازی</button><button data-page="wallet" onclick="go('wallet')"><span class="icon">💰</span>کیف پول</button><button data-page="history" onclick="go('history')"><span class="icon">📋</span>تاریخچه</button><button data-page="profile" onclick="go('profile')"><span class="icon">👤</span>پروفایل</button></nav></section>
+
+<script>
+const API_BASE="https://gamefi1.onrender.com/api";
+const TOKEN_KEY="brics_token";
+let token=localStorage.getItem(TOKEN_KEY),me=null,games=[],activeGame=null,activeSessionId=null,timer=null;
+const $=id=>document.getElementById(id),$$=q=>document.querySelectorAll(q);
+function showLoading(text,canRetry=false){$("loadingText").textContent=text||"در حال اتصال...";$('loadingRetry').classList.toggle('hidden',!canRetry)}
+function toast(msg){$("toast").textContent=msg;$("toast").classList.remove("hidden");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),3500)}
+function showLogin(){$("loginBox").classList.remove("hidden");$("registerBox").classList.add("hidden")}
+function showRegister(){$("loginBox").classList.add("hidden");$("registerBox").classList.remove("hidden")}
+function openConfig(){}
+function closeConfig(){}
+async function saveApiAndRetry(){await boot()}
+async function fetchWithTimeout(url,options={},ms=12000){const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);try{return await fetch(url,{...options,signal:c.signal})}finally{clearTimeout(t)}}
+async function api(path,options={}){const headers={"Content-Type":"application/json",...(options.headers||{})};if(token)headers.Authorization="Bearer "+token;let res;try{res=await fetchWithTimeout(API_BASE+path,{...options,headers},12000)}catch(e){throw new Error(e.name==='AbortError'?'اتصال به سرور بیش از حد طول کشید.':'سرور در دسترس نیست.')}let data={};try{data=await res.json()}catch(e){}if(!res.ok){if(res.status===401){logout(false);throw new Error('جلسه شما منقضی شده است.')}throw new Error(data.message||data.error||('خطای سرور: '+res.status))}return data}
+function extract(data,keys=[]){if(Array.isArray(data))return data;for(const k of keys)if(Array.isArray(data?.data?.[k]))return data.data[k];for(const k of keys)if(Array.isArray(data?.[k]))return data[k];return Array.isArray(data?.data)?data.data:[]}
+function extractToken(data){return data?.token||data?.accessToken||data?.data?.token||data?.data?.accessToken}
+async function login(){try{const email=$("loginEmail").value.trim().toLowerCase(),password=$("loginPassword").value;if(!email||!password)return toast('ایمیل و رمز عبور را وارد کنید.');const data=await api('/auth/login',{method:'POST',body:JSON.stringify({email,password})});token=extractToken(data);if(!token)throw new Error('توکن از سرور دریافت نشد.');localStorage.setItem(TOKEN_KEY,token);await startApp();toast('ورود موفق بود.')}catch(e){toast(e.message)}}
+async function register(){try{const username=$("regUsername").value.trim(),email=$("regEmail").value.trim().toLowerCase(),password=$("regPassword").value,referralCode=$("regReferral").value.trim();if(username.length<3||username.length>30)return toast('نام کاربری باید ۳ تا ۳۰ کاراکتر باشد.');if(!/^\S+@\S+\.\S+$/.test(email))return toast('ایمیل معتبر وارد کنید.');if(password.length<8)return toast('رمز عبور باید حداقل ۸ کاراکتر باشد.');const body={username,email,password};if(referralCode)body.referralCode=referralCode;const data=await api('/auth/register',{method:'POST',body:JSON.stringify(body)});token=extractToken(data);if(token){localStorage.setItem(TOKEN_KEY,token);await startApp();toast('حساب ساخته شد.')}else{showLogin();toast('ثبت‌نام انجام شد؛ اکنون وارد شوید.')}}catch(e){toast(e.message)}}
+async function startApp(){
+  $("loading").classList.add('hidden');
+  $("auth").classList.add('hidden');
+  $("app").classList.remove('hidden');
+  go('home');
+  try{ await refresh(); }catch(e){ console.error(e); $('connection').textContent='اتصال برقرار نشد'; toast(e.message||'خطا در اتصال به سرور'); }
+  try{ await loadAds(); }catch(e){ console.warn('Ads:',e); }
+}
+async function refresh(){try{const data=await api('/auth/me');me=data?.data?.user||data?.user||data?.data||data;renderMe();const [g,t,w]=await Promise.allSettled([api('/games'),api('/users/transactions'),api('/withdrawals/my')]);if(g.status==='fulfilled'){games=extract(g.value,['games']).map(x=>({...x,id:x.slug||x.id}));renderGames()}else toast('فهرست بازی‌ها بارگذاری نشد.');if(t.status==='fulfilled')renderTransactions(extract(t.value,['transactions']));if(w.status==='fulfilled')renderWithdrawals(extract(w.value,['withdrawals']));$('connection').textContent='متصل';if(me.role==='admin')addAdminNav();else removeAdminNav()}catch(e){$('connection').textContent='خطا';throw e}}
+function renderMe(){const u=me||{},balance=u.points??u.coins??0;$('homeBalance').textContent=Number(balance).toLocaleString('en-US');$('walletBalance').textContent=Number(balance).toLocaleString('en-US');$('walletUsd').textContent='$'+Number(balance/1000000).toFixed(6);$('bestScore').textContent=Number(u.totalEarned||0).toLocaleString('en-US');$('level').textContent=Math.max(1,Math.floor(Number(u.totalEarned||0)/100)+1);$('gamesPlayed').textContent=Number(u.gamesPlayed||0).toLocaleString('en-US');$('usdtBalance').textContent=Number(u.totalWithdrawn||0).toLocaleString('en-US');$('profileUsername').value=u.username||'';$('profileEmail').value=u.email||'';$('referralCode').value=u.referralCode||'';refreshPremiumStats()}
+
+/* ===== BRICS Built-in Games ===== */
+const BUILTIN_GAMES=[
+ {id:'local-tap',name:'ضربه سریع',category:'مهارتی',icon:'👆',description:'در 15 ثانیه تا می‌توانی سریع ضربه بزن.',local:true},
+ {id:'local-reaction',name:'واکنش سریع',category:'مهارتی',icon:'⚡',description:'وقتی صفحه سبز شد سریع کلیک کن.',local:true},
+ {id:'local-memory',name:'حافظه کارت‌ها',category:'فکری',icon:'🧠',description:'جفت کارت‌های مشابه را پیدا کن.',local:true},
+ {id:'local-math',name:'محاسبه سریع',category:'فکری',icon:'➕',description:'پاسخ درست را قبل از پایان زمان انتخاب کن.',local:true},
+ {id:'local-target',name:'هدف‌گیری',category:'مهارتی',icon:'🎯',description:'در 20 ثانیه بیشترین هدف را بزن.',local:true}
+];
+let localGameState={};
+
+function renderGames(){
+ const all=[...games],seen=new Set(all.map(g=>String(g._id||g.id)));
+ BUILTIN_GAMES.forEach(g=>{if(!seen.has(g.id))all.push(g)});
+ const q=($('gameSearch')?.value||'').trim().toLowerCase();
+ const cats=['همه',...new Set(all.map(g=>g.category||'عمومی'))];
+ window.gameCategory=window.gameCategory||'همه';
+ $('gameCategories').innerHTML=cats.map(c=>`<button class="game-category ${c===window.gameCategory?'active':''}" onclick="window.gameCategory=${JSON.stringify(c)};renderGames()">${esc(c)}</button>`).join('');
+ const list=all.filter(g=>(window.gameCategory==='همه'||(g.category||'عمومی')===window.gameCategory)&&(!q||(String(g.name)+' '+String(g.description||'')).toLowerCase().includes(q)));
+ $('gamesList').innerHTML=list.map(g=>{
+   const id=g._id||g.id,local=String(g.slug||g.id).startsWith('local-');
+   return `<div class="card game-card ${local?'game-featured':''}">
+     <div class="game-title-row"><div class="game-icon">${esc(g.icon||'🎮')}</div><span class="play-label">${local?'بازی داخلی':'بازی آنلاین'}</span></div>
+     <h3>${esc(g.name||'بازی')}</h3><p class="game-meta">${esc(g.description||'بازی کنید و امتیاز بگیرید.')}</p>
+     <div class="row"><span class="game-chip">🏆 ${local?'رکورد شخصی':'پاداش سرور'}</span><span class="game-chip">${esc(g.category||'عمومی')}</span></div>
+     <button class="btn" onclick="startGame('${escAttr(id)}')">شروع بازی</button>
+   </div>`;
+ }).join('')||'<div class="card empty">بازی پیدا نشد.</div>';
+ $('gamesProgress').style.width=Math.min(100,all.length*15)+'%';
+}
+
+async function startGame(id){
+ const g=games.find(x=>String(x._id||x.id)===String(id))||BUILTIN_GAMES.find(x=>x.id===String(id));
+ if(!g)return;
+ const isLocal=String(g.slug||g.id).startsWith('local-');
+ try{
+   const data=await api('/games/'+encodeURIComponent(g._id||g.id)+'/start',{method:'POST'});
+   activeGame=g;activeSessionId=data?.data?.sessionId||data?.sessionId;
+   if(!activeSessionId)throw Error('Session از سرور دریافت نشد.');
+   $('activeGame').classList.remove('hidden');$('activeGameTitle').textContent=g.name;
+   $('gameInstruction').textContent=g.description;$('gameScore').textContent='0';
+   $('completeBtn').disabled=true;
+   let remaining=Math.max(0,Number(data?.data?.minGameSeconds??data?.minGameSeconds??5));
+   $('gameTimer').textContent=remaining?`لطفاً ${remaining} ثانیه دیگر صبر کنید`:'آماده ثبت نتیجه';
+   clearInterval(timer);
+   timer=setInterval(()=>{remaining--;if(remaining<=0){clearInterval(timer);$('gameTimer').textContent='زمان کافی است؛ نتیجه را ثبت کنید.';$('completeBtn').disabled=false}else $('gameTimer').textContent=`لطفاً ${remaining} ثانیه دیگر صبر کنید`},1000);
+   if(remaining===0)$('completeBtn').disabled=false;
+   renderMiniGame(g);window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});return;
+ }catch(e){toast(e.message);return}
+}
+
+function setLocalTimer(seconds,done){
+ clearInterval(localInterval);let left=seconds;
+ $('gameTimer').textContent='00:'+String(left).padStart(2,'0');
+ localInterval=setInterval(()=>{left--;$('gameTimer').textContent=left>0?'00:'+String(left).padStart(2,'0'):'پایان';
+   if(left<=0){clearInterval(localInterval);done&&done();}
+ },1000);
+}
+function addLocalScore(n){const v=(Number($('gameScore').textContent)||0)+n;$('gameScore').textContent=v;return v}
+function saveLocalRecord(id,score){
+ const key='brics_record_'+id,old=Number(localStorage.getItem(key)||0);
+ if(score>old)localStorage.setItem(key,String(score));
+ return Math.max(old,score);
+}
+
+function renderMiniGame(g){
+ const a=$('miniGameArea');a.innerHTML='';
+ if(g.id==='local-tap'){
+   localGameState={type:'tap',count:0};
+   a.innerHTML=`<div class="game-board"><div class="game-result">ضربه‌ها: <b id="tapCount">0</b></div><button class="big-game-btn" id="tapBtn">👆</button><div class="game-result">هر ضربه = 1 امتیاز</div></div>`;
+   $('tapBtn').onclick=()=>{localGameState.count++;$('tapCount').textContent=localGameState.count;$('gameScore').textContent=localGameState.count};
+   setLocalTimer(15,()=>{toast('زمان تمام شد!');saveLocalRecord(g.id,localGameState.count)});
+ } else if(g.id==='local-reaction'){
+   localGameState={type:'reaction',start:0,done:false};
+   a.innerHTML=`<div class="game-board"><div id="reactionZone" class="reaction-zone wait">صبر کن...</div><div id="reactionResult" class="game-result">وقتی سبز شد کلیک کن</div></div>`;
+   const zone=$('reactionZone');let delay=1200+Math.random()*2800;
+   zone.onclick=()=>{if(localGameState.done)return;if(!localGameState.start){$('reactionResult').textContent='هنوز آماده نیست!';return}
+      const ms=performance.now()-localGameState.start;localGameState.done=true;
+      const score=Math.max(5,Math.round(100-(ms/10)));$('gameScore').textContent=score;$('reactionResult').textContent=`زمان واکنش: ${Math.round(ms)}ms — امتیاز ${score}`;saveLocalRecord(g.id,score)};
+   setTimeout(()=>{if(activeGame?.id===g.id&&!localGameState.done){zone.className='reaction-zone ready';zone.textContent='الان! کلیک کن';localGameState.start=performance.now()}},delay);
+   setLocalTimer(12,()=>{if(!localGameState.done)toast('دیر شد! دوباره امتحان کن.')});
+ } else if(g.id==='local-memory'){
+   const symbols=['🍎','🍌','🍇','🍉','🍒','🥝','🥕','🌽'],deck=[...symbols,...symbols].sort(()=>Math.random()-.5);
+   localGameState={type:'memory',deck,open:[],matched:0,locked:false};
+   a.innerHTML=`<div class="game-board"><div class="memory-grid">${deck.map((s,i)=>`<button class="memory-card" data-i="${i}">${s}</button>`).join('')}</div><div id="memoryResult" class="game-result">دو کارت را انتخاب کن</div></div>`;
+   $$('.memory-card').forEach(btn=>btn.onclick=()=>memoryPick(Number(btn.dataset.i)));
+   setLocalTimer(30,()=>toast('زمان حافظه تمام شد.'));
+ } else if(g.id==='local-math'){
+   localGameState={type:'math',correct:0,round:0};
+   a.innerHTML=`<div class="game-board"><div id="mathQuestion" style="font-size:26px;font-weight:900"></div><div id="mathOptions" class="number-options"></div><div id="mathResult" class="game-result">پاسخ درست را انتخاب کن</div></div>`;
+   nextMathRound();setLocalTimer(20,()=>toast('زمان محاسبه تمام شد.'));
+ } else if(g.id==='local-target'){
+   localGameState={type:'target',hits:0};
+   a.innerHTML=`<div class="game-board"><div id="targetBoard" class="target-board"></div><div id="targetResult" class="game-result">هدف‌ها را بزن!</div></div>`;
+   spawnTarget();setLocalTimer(20,()=>{clearTimeout(localGameState.targetTimer);saveLocalRecord(g.id,localGameState.hits);toast('زمان هدف‌گیری تمام شد.')});
+ } else {
+   a.innerHTML='<div class="mini-game"><button class="btn" onclick="addLocalScore(10)">🎮 کلیک برای امتیاز</button></div>';
+ }
+}
+
+function memoryPick(i){
+ const s=localGameState;if(s.locked||s.open.includes(i))return;
+ const btn=$(`.memory-card[data-i="${i}"]`);btn.classList.add('open');s.open.push(i);
+ if(s.open.length===2){
+   s.locked=true;const [a,b]=s.open;
+   if(s.deck[a]===s.deck[b]){
+     $(`.memory-card[data-i="${a}"]`).classList.add('done');$(`.memory-card[data-i="${b}"]`).classList.add('done');
+     s.matched++;s.open=[];s.locked=false;$('gameScore').textContent=s.matched*10;
+     if(s.matched===8){clearInterval(localInterval);$('memoryResult').textContent='کامل شد!';saveLocalRecord('local-memory',80)}
+   }else setTimeout(()=>{$(`.memory-card[data-i="${a}"]`).classList.remove('open');$(`.memory-card[data-i="${b}"]`).classList.remove('open');s.open=[];s.locked=false},550);
+ }
+}
+function nextMathRound(){
+ const n=Math.floor(Math.random()*30)+5,m=Math.floor(Math.random()*20)+1,ans=n+m;
+ const opts=[ans,ans+1,ans-1,ans+2].sort(()=>Math.random()-.5);
+ $('mathQuestion').textContent=`${n} + ${m} = ؟`;
+ $('mathOptions').innerHTML=opts.map(x=>`<button onclick="mathAnswer(${x},${ans})">${x}</button>`).join('');
+}
+function mathAnswer(x,ans){
+ if(x===ans){localGameState.correct++;$('gameScore').textContent=localGameState.correct*10;$('mathResult').textContent='درست! +10';nextMathRound()}
+ else $('mathResult').textContent='اشتباه — دوباره تلاش کن';
+}
+function spawnTarget(){
+ const board=$('targetBoard');if(!board)return;
+ board.innerHTML='<button class="target-dot" id="targetDot"></button>';
+ const dot=$('targetDot'),maxX=Math.max(0,board.clientWidth-55),maxY=Math.max(0,board.clientHeight-55);
+ dot.style.left=Math.floor(Math.random()*maxX)+'px';dot.style.top=Math.floor(Math.random()*maxY)+'px';
+ dot.onclick=()=>{localGameState.hits++;$('gameScore').textContent=localGameState.hits*5;$('targetResult').textContent=`هدف‌های زده‌شده: ${localGameState.hits}`;spawnTarget()};
+}
+function cancelGame(){activeGame=null;activeSessionId=null;clearInterval(timer);clearInterval(localInterval);$('activeGame').classList.add('hidden')}
+
+
+/* ===== Server-authoritative ads / progression ===== */
+let ads=[];let activeAdSessionId=null;let activeAdId=null;
+function scrollToAds(){document.getElementById('adsArea')?.scrollIntoView({behavior:'smooth',block:'start'});loadAds()}
+async function loadAds(){try{const d=await api('/ads');ads=extract(d,['ads']);renderAds()}catch(e){if($('adsList'))$('adsList').innerHTML='<div class="empty">تبلیغات در دسترس نیست.</div>';}}
+function renderAds(){const box=$('adsList');if(!box)return;if(!ads.length){box.innerHTML='<div class="empty">فعلاً تبلیغی فعال نیست.</div>';return}box.innerHTML=ads.map(a=>`<div class="item"><div class="row"><div><b>${esc(a.title)}</b><div class="muted">🎁 +${Number(a.rewardPoints).toLocaleString('en-US')} امتیاز · ${a.viewSeconds} ثانیه</div></div><button class="btn" style="margin:0;width:auto" onclick="watchAd('${escAttr(a._id)}')">مشاهده</button></div></div>`).join('')}
+async function watchAd(id){try{const d=await api('/ads/'+encodeURIComponent(id)+'/start',{method:'POST'});activeAdId=id;activeAdSessionId=d?.data?.sessionId;const sec=Number(d?.data?.viewSeconds||10);const url=d?.data?.url;if(url)window.open(url,'_blank','noopener,noreferrer');let left=sec;toast(`تبلیغ باز شد؛ ${left} ثانیه صبر کنید.`);const iv=setInterval(async()=>{left--;if(left<=0){clearInterval(iv);try{const done=await api('/ads/'+encodeURIComponent(id)+'/complete',{method:'POST',body:JSON.stringify({sessionId:activeAdSessionId})});toast('🎁 +'+Number(done?.data?.pointsEarned||0)+' امتیاز ثبت شد.');activeAdId=null;activeAdSessionId=null;await refresh()}catch(e){toast(e.message)}}},1000)}catch(e){toast(e.message)}}
+function refreshPremiumStats(){const scores=BUILTIN_GAMES.map(g=>Number(localStorage.getItem('brics_record_'+g.id)||0));const best=Math.max(0,...scores);if($('bestRecord'))$('bestRecord').textContent=best.toLocaleString('en-US');const earned=Number(me?.totalEarned||0);const lvl=Math.max(1,Math.floor(earned/100)+1);if($('level'))$('level').textContent=lvl;if($('xpFill'))$('xpFill').style.width=(earned%100)+'%';}
+
+async function withdraw(){try{const amount=Number($('withdrawAmount').value),address=$('withdrawAddress').value.trim();if(!Number.isInteger(amount)||amount<=0)return toast('مقدار باید یک عدد صحیح مثبت باشد.');if(!address)return toast('آدرس کیف پول را وارد کنید.');const data=await api('/withdrawals',{method:'POST',body:JSON.stringify({amount,method:'USDT',destination:address,address,walletAddress:address})});$('withdrawAmount').value='';$('withdrawAddress').value='';toast(data?.message||'درخواست برداشت ثبت شد.');await refresh()}catch(e){toast(e.message)}}
+function renderWithdrawals(list){const box=$('withdrawals');if(!list.length){box.innerHTML='<div class="empty">هنوز برداشت ثبت نشده است.</div>';return}box.innerHTML=list.map(x=>`<div class="item"><b>${esc(x.amount??0)} امتیاز</b> <span class="badge ${x.status==='paid'?'success':x.status==='rejected'?'danger':'warn'}">${esc(statusText(x.status))}</span><div class="muted">${esc(x.destination||'')}</div><div class="muted">${dateText(x.createdAt)}</div></div>`).join('')}
+function renderTransactions(list){const box=$('transactions');if(!list.length){box.innerHTML='<div class="empty">تراکنشی وجود ندارد.</div>';return}box.innerHTML=list.map(x=>`<div class="item"><b>${esc(typeText(x.type))}</b><div>${esc(String(x.points??x.amount??0))} ${x.points!==undefined?'امتیاز':''}</div><div class="muted">${esc(String(x.status||''))} ${dateText(x.createdAt)}</div></div>`).join('')}
+let profileSaveTimer=null;function autoSaveProfile(){clearTimeout(profileSaveTimer);if($('profileAutosave'))$('profileAutosave').textContent='در حال ذخیره خودکار...';profileSaveTimer=setTimeout(async()=>{try{await api('/users/profile',{method:'PATCH',body:JSON.stringify({username:$('profileUsername').value.trim()})});if($('profileAutosave'))$('profileAutosave').textContent='✓ ذخیره خودکار انجام شد'}catch(e){if($('profileAutosave'))$('profileAutosave').textContent='ذخیره خودکار ناموفق بود';toast(e.message)}},700)}async function updateProfile(){autoSaveProfile()}
+async function copyReferral(){const v=$('referralCode').value;if(!v)return toast('کد دعوت موجود نیست.');try{await navigator.clipboard.writeText(v);toast('کد دعوت کپی شد.')}catch(e){toast(v)}}
+function go(page){['home','games','wallet','history','profile','admin'].forEach(p=>$('page-'+p).classList.toggle('hidden',p!==page));$$('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo(0,0);if(page==='wallet'||page==='history')refresh();if(page==='admin')loadAdmin()}
+function addAdminNav(){if($('[data-page="admin"]'))return;const nav=$('bottomNav'),b=document.createElement('button');b.dataset.page='admin';b.onclick=()=>go('admin');b.innerHTML='<span class="icon">⚙️</span>مدیریت';nav.appendChild(b);nav.style.gridTemplateColumns='repeat(6,1fr)'}
+function removeAdminNav(){const b=$('[data-page="admin"]');if(b)b.remove();$('bottomNav').style.gridTemplateColumns='repeat(5,1fr)'}
+async function loadAdmin(){if(me?.role!=='admin')return toast('دسترسی مدیر لازم است.');try{const [d,w,p]=await Promise.all([api('/admin/dashboard'),api('/admin/withdrawals'),api('/admin/reward-pool')]);const x=d.data||{};$('adminStats').innerHTML=[['کاربران',x.users],['فعال',x.activeUsers],['بازی‌ها',x.games],['برداشت در انتظار',x.pendingWithdrawals],['برداشت پرداخت‌شده',x.paidWithdrawals]].map(a=>`<div class="admin-box"><span class="muted">${a[0]}</span><b>${Number(a[1]||0).toLocaleString('en-US')}</b></div>`).join('');renderAdminWithdrawals(extract(w,['withdrawals']));renderAdminPool(extract(p,['pools']));await Promise.all([loadAdminUsers(),loadAdminGames(),loadAdminAds()])}catch(e){toast(e.message)}}
+async function loadAdminUsers(){try{const q=encodeURIComponent($('adminSearch').value.trim());const d=await api('/admin/users?limit=50&search='+q);const list=extract(d,['users']);$('adminUsers').innerHTML=list.length?'<div class="table-wrap"><table class="table"><thead><tr><th>کاربر</th><th>امتیاز</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>'+list.map(u=>`<tr><td>${esc(u.username)}<br><span class="muted">${esc(u.email)}</span></td><td>${esc(u.points)}</td><td>${esc(u.status)}</td><td><select onchange="changeUserStatus('${escAttr(u._id)}',this.value)"><option value="active" ${u.status==='active'?'selected':''}>فعال</option><option value="suspended" ${u.status==='suspended'?'selected':''}>تعلیق</option><option value="banned" ${u.status==='banned'?'selected':''}>مسدود</option></select></td></tr>`).join('')+'</tbody></table></div>':'<div class="empty">کاربری پیدا نشد.</div>'}catch(e){toast(e.message)}}
+async function changeUserStatus(id,status){try{await api('/admin/users/'+encodeURIComponent(id)+'/status',{method:'PATCH',body:JSON.stringify({status})});toast('وضعیت کاربر تغییر کرد.');loadAdminUsers()}catch(e){toast(e.message)}}
+async function loadAdminGames(){try{const d=await api('/admin/games');const list=extract(d,['games']);$('adminGames').innerHTML=list.map(g=>`<div class="item"><b>${esc(g.name)}</b><div class="muted">پاداش ${esc(g.pointsPerPlay)} | روزانه ${esc(g.dailyPlayLimit)} | حداکثر روزانه ${esc(g.maxPointsPerDay)}</div><button class="btn ${g.isActive?'warning':'success'}" onclick="toggleGame('${escAttr(g._id)}',${!g.isActive})">${g.isActive?'غیرفعال کردن':'فعال کردن'}</button></div>`).join('')||'<div class="empty">بازی‌ای وجود ندارد.</div>'}catch(e){toast(e.message)}}
+async function toggleGame(id,isActive){try{await api('/admin/games/'+encodeURIComponent(id),{method:'PATCH',body:JSON.stringify({isActive})});toast('وضعیت بازی تغییر کرد.');loadAdminGames();refresh()}catch(e){toast(e.message)}}
+async function createAdminGame(){try{const name=$('newGameName').value.trim(),slug=$('newGameSlug').value.trim().toLowerCase(),points=Number($('newGamePoints').value),limit=Number($('newGameLimit').value),max=Number($('newGameMax').value);if(!name||!slug)return toast('نام و slug را وارد کنید.');await api('/admin/games',{method:'POST',body:JSON.stringify({name,slug,pointsPerPlay:points,dailyPlayLimit:limit,maxPointsPerDay:max,isActive:true})});toast('بازی ایجاد شد.');$('newGameName').value='';$('newGameSlug').value='';loadAdminGames();refresh()}catch(e){toast(e.message)}}
+async function loadAdminAds(){try{const d=await api('/ads/admin/all');const list=extract(d,['ads']);$('adminAds').innerHTML=list.length?list.map(a=>`<div class="item"><b>${esc(a.title)}</b><div class="muted">${esc(a.url)} · +${esc(a.rewardPoints)} امتیاز · ${esc(a.viewSeconds)} ثانیه · روزانه ${esc(a.dailyLimitPerUser)}</div><div class="row"><button class="btn ${a.isActive?'warning':'success'}" onclick="toggleAdminAd('${escAttr(a._id)}',${!a.isActive})">${a.isActive?'غیرفعال':'فعال'}</button><button class="btn danger" onclick="deleteAdminAd('${escAttr(a._id)}')">حذف</button></div></div>`).join(''):'<div class="empty">تبلیغی ثبت نشده است.</div>'}catch(e){toast(e.message)}}
+async function createAdminAd(){try{const title=$('newAdTitle').value.trim(),url=$('newAdUrl').value.trim(),rewardPoints=Number($('newAdPoints').value),viewSeconds=Number($('newAdSeconds').value),dailyLimitPerUser=Number($('newAdDaily').value);if(!title||!/^https?:\/\//i.test(url))return toast('عنوان و لینک معتبر وارد کنید.');await api('/ads/admin',{method:'POST',body:JSON.stringify({title,url,rewardPoints,viewSeconds,dailyLimitPerUser,isActive:true})});$('newAdTitle').value='';$('newAdUrl').value='';toast('تبلیغ اضافه شد.');loadAdminAds()}catch(e){toast(e.message)}}
+async function toggleAdminAd(id,isActive){try{await api('/ads/admin/'+encodeURIComponent(id),{method:'PATCH',body:JSON.stringify({isActive})});loadAdminAds()}catch(e){toast(e.message)}}
+async function deleteAdminAd(id){if(!confirm('این تبلیغ حذف شود؟'))return;try{await api('/ads/admin/'+encodeURIComponent(id),{method:'DELETE'});loadAdminAds()}catch(e){toast(e.message)}}
+function renderAdminWithdrawals(list){$('adminWithdrawals').innerHTML=list.length?list.map(x=>`<div class="item"><b>${esc(x.userId?.username||'کاربر')}</b> — ${esc(x.amount)} امتیاز <span class="badge ${x.status==='paid'?'success':x.status==='rejected'?'danger':'warn'}">${esc(statusText(x.status))}</span><div class="muted">${esc(x.destination||'')}</div>${x.status!=='paid'?`<div class="row"><button class="btn success" onclick="adminWithdrawal('${escAttr(x._id)}','paid')">پرداخت شد</button><button class="btn danger" onclick="adminWithdrawal('${escAttr(x._id)}','rejected')">رد</button></div>`:''}</div>`).join(''):'<div class="empty">برداشتی وجود ندارد.</div>'}
+async function adminWithdrawal(id,status){try{await api('/withdrawals/admin/'+encodeURIComponent(id),{method:'PATCH',body:JSON.stringify({status})});toast('برداشت به‌روزرسانی شد.');loadAdmin()}catch(e){toast(e.message)}}
+function renderAdminPool(list){const p=list[0];$('adminPool').innerHTML=p?`<div class="grid"><div class="stat"><span class="muted">بودجه کاربران</span><b>${p.userRewardBudget}</b></div><div class="stat"><span class="muted">باقی‌مانده</span><b>${p.remaining}</b></div></div>`:'<div class="empty">Reward Pool هنوز تنظیم نشده است.</div>'}
+async function savePool(){try{const revenue=Number($('poolRevenue').value)||0,expenses=Number($('poolExpenses').value)||0,userSharePercent=Number($('poolUserShare').value)||0,ownerSharePercent=Number($('poolOwnerShare').value)||0;await api('/rewards/pool',{method:'POST',body:JSON.stringify({revenue,expenses,userSharePercent,ownerSharePercent})});toast('Reward Pool ذخیره شد.');loadAdmin()}catch(e){toast(e.message)}}
+function logout(show=true){token=null;me=null;activeGame=null;activeSessionId=null;clearInterval(timer);localStorage.removeItem(TOKEN_KEY);$('app').classList.add('hidden');$('auth').classList.remove('hidden');$('loading').classList.add('hidden');showLogin();if(show)toast('از حساب خارج شدید.')}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}function escAttr(v){return esc(v).replace(/`/g,'&#096;')}function dateText(v){if(!v)return '';try{return new Date(v).toLocaleString('fa-AF')}catch(e){return ''}}function statusText(s){return({pending:'در انتظار',approved:'تایید شده',rejected:'رد شده',paid:'پرداخت شده'})[s]||s}function typeText(s){return({reward:'پاداش بازی',withdrawal:'برداشت',referral:'معرفی',admin_adjustment:'تعدیل مدیر'})[s]||s}
+$("profileUsername")?.addEventListener("input",autoSaveProfile);
+async function boot(){
+  $('loadingRetry').classList.add('hidden');
+  $('loading').classList.remove('hidden');
+  showLoading('در حال اتصال به سرور...',false);
+  if(!token){
+    $('loading').classList.add('hidden');
+    $('auth').classList.remove('hidden');
+    return;
+  }
+  try{
+    await api('/auth/me');
+    await startApp();
+  }catch(e){
+    console.error(e);
+    localStorage.removeItem(TOKEN_KEY);
+    token=null;
+    $('loading').classList.add('hidden');
+    $('app').classList.add('hidden');
+    $('auth').classList.remove('hidden');
+    toast(e.message||'اتصال به سرور ناموفق بود.');
+  }
+}
+boot();setTimeout(refreshPremiumStats,300);setTimeout(()=>{if(!$('loading').classList.contains('hidden')){ $('loading').classList.add('hidden'); $('auth').classList.remove('hidden'); toast('زمان اتصال تمام شد؛ اتصال اینترنت و Backend را بررسی کنید.');}},15000);
+</script>
+
+<script id="brics-pro-script">
+(function(){
+  const PRO_GAMES=[
+    {id:'local-color',name:'رنگ سریع',category:'مهارتی',icon:'🎨',description:'رنگ درست را از بین گزینه‌ها انتخاب کن.'},
+    {id:'local-sequence',name:'حافظه عددی',category:'فکری',icon:'🔢',description:'دنباله عددی را حفظ کن و بازسازی کن.'},
+    {id:'local-precision',name:'دقت طلایی',category:'مهارتی',icon:'🎯',description:'در زمان محدود هدف‌ها را با دقت بزن.'}
+  ];
+  const originalStartGame=window.startGame;
+  const records=()=>{try{return Object.keys(localStorage).filter(k=>k.startsWith('brics_record_')).reduce((a,k)=>a+Number(localStorage.getItem(k)||0),0)}catch(e){return 0}};
+  function addProGames(){
+    if(!Array.isArray(window.BUILTIN_GAMES))return;
+    PRO_GAMES.forEach(g=>{if(!BUILTIN_GAMES.some(x=>x.id===g.id))BUILTIN_GAMES.push(g)});
+  }
+  async function startProServerSession(g){
+    const serverGame=games.find(x=>String(x.slug||x.id)===String(g.id));
+    if(!serverGame)throw new Error('این بازی هنوز روی سرور فعال نشده است.');
+    const data=await api('/games/'+encodeURIComponent(serverGame._id)+'/start',{method:'POST'});
+    activeGame=serverGame;
+    activeSessionId=data?.data?.sessionId||data?.sessionId;
+    if(!activeSessionId)throw new Error('Session از سرور دریافت نشد.');
+    return serverGame;
+  }
+  async function finishLocal(g,score){
+    if(g._submitted)return;
+    g._submitted=true;
+    const serverGame=activeGame;
+    try{
+      if(!activeSessionId||!serverGame?._id)throw new Error('جلسه بازی معتبر نیست.');
+      const data=await api('/games/'+encodeURIComponent(serverGame._id)+'/complete',{method:'POST',body:JSON.stringify({sessionId:activeSessionId,score:Number(score)||0})});
+      saveLocalRecord(g.id,Number(score)||0);
+      toast('🎁 +'+Number(data?.data?.pointsEarned||0)+' امتیاز در حساب ثبت شد.');
+      await refresh();
+      cancelGame();
+    }catch(e){g._submitted=false;toast(e.message)}
+  }
+  async function proGame(g){
+    try{await startProServerSession(g)}catch(e){toast(e.message);return}
+    g._submitted=false;
+    $('activeGame').classList.remove('hidden');$('activeGameTitle').textContent=g.name;$('gameInstruction').textContent=g.description;$('gameScore').textContent='0';$('completeBtn').disabled=true;
+    const a=$('miniGameArea');a.innerHTML='';clearInterval(localInterval);clearInterval(timer);
+    if(g.id==='local-color'){
+      const colors=[['قرمز','red'],['آبی','blue'],['سبز','green'],['بنفش','purple']];let round=0,score=0,locked=false;
+      const draw=()=>{locked=false;const target=colors[Math.floor(Math.random()*colors.length)];a.innerHTML='<div class="pro-card"><div style="font-size:18px;text-align:center">رنگ هدف: <b>'+target[0]+'</b></div><div class="pro-choice" style="margin-top:12px">'+colors.map(c=>`<button data-c="${c[0]}">${c[0]}</button>`).join('')+'</div></div>';a.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(locked)return;locked=true;if(b.dataset.c===target[0]){score+=10;addLocalScore(10)}else score=Math.max(0,score-3);$('gameScore').textContent=score;round++;if(round<8)setTimeout(draw,220);else{finishLocal(g,score);toast('🎨 مرحله تمام شد');}})};draw();setLocalTimer(15,()=>{finishLocal(g,score);toast('زمان تمام شد')});
+    }else if(g.id==='local-sequence'){
+      let seq=[],round=3,score=0,answer='';const make=()=>{seq=Array.from({length:round},()=>Math.floor(Math.random()*9)+1);a.innerHTML='<div class="pro-card" style="text-align:center"><div class="pro-kicker">دنباله را حفظ کن</div><div style="font-size:34px;font-weight:900;letter-spacing:8px;margin:15px 0">'+seq.join(' ')+'</div></div>';setTimeout(()=>{a.innerHTML='<div class="pro-card"><div class="pro-kicker">دنباله را وارد کن</div><input id="seqInput" inputmode="numeric" placeholder="مثلاً 3 8 2" style="margin-top:10px"><button class="btn" style="margin-top:10px;width:100%" id="seqSubmit">بررسی</button><div id="seqMsg" class="pro-sub" style="margin-top:8px"></div></div>';const inp=$('seqInput');$('seqSubmit').onclick=()=>{answer=inp.value.trim().replace(/,/g,' ');if(answer===seq.join(' ')){score+=round*10;round++;$('gameScore').textContent=score;if(round>7){finishLocal(g,score);toast('🔢 عالی بود');return}make()}else{score=Math.max(0,score-5);$('gameScore').textContent=score;$('seqMsg').textContent='اشتباه بود؛ یک دنباله جدید می‌آید.';round=Math.max(3,round-1);setTimeout(make,700)}};inp.focus()},900)};make();setLocalTimer(25,()=>{finishLocal(g,score);toast('زمان تمام شد')});
+    }else if(g.id==='local-precision'){
+      let score=0,left=20;const draw=()=>{a.innerHTML='<div class="pro-card"><div class="pro-game-btn" id="precisionBtn">◎</div><div class="pro-sub" style="text-align:center;margin-top:8px">هدف را بزن</div></div>';const b=$('precisionBtn');b.onclick=()=>{score+=5;left=Math.max(0,left-1);$('gameScore').textContent=score;if(left>0)draw();else{finishLocal(g,score);toast('🎯 مرحله کامل شد')}}};draw();setLocalTimer(20,()=>{finishLocal(g,score);toast('زمان تمام شد')});
+    }
+    window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+  }
+  window.startGame=function(id){if(String(id).startsWith('local-color')||String(id).startsWith('local-sequence')||String(id).startsWith('local-precision')){const g=PRO_GAMES.find(x=>x.id===String(id));if(g)return proGame(g)}return originalStartGame(id)};
+  window.completeGame=async function(){
+    if(!activeGame){toast('بازی فعالی وجود ندارد.');return}
+    if(String(activeGame.slug||activeGame.id||'').startsWith('local-')){if(!activeSessionId)return toast('جلسه بازی معتبر نیست.');const score=Number($('gameScore').textContent)||0;try{const data=await api('/games/'+encodeURIComponent(activeGame._id||activeGame.id)+'/complete',{method:'POST',body:JSON.stringify({sessionId:activeSessionId,score})});saveLocalRecord(activeGame.slug||activeGame.id,score);toast('نتیجه ثبت شد ✓ +'+Number(data?.data?.pointsEarned||0)+' امتیاز');await refresh();cancelGame()}catch(e){toast(e.message)}return}
+    if(!activeSessionId){toast('جلسه بازی معتبر نیست.');return}
+    try{const data=await api('/games/'+encodeURIComponent(activeGame._id||activeGame.id)+'/complete',{method:'POST',body:JSON.stringify({sessionId:activeSessionId,score:Number($('gameScore').textContent)||0})});toast('نتیجه ثبت شد ✓');if(data?.data?.points!=null)toast('+'+data.data.points+' امتیاز');await refresh();cancelGame()}catch(e){toast(e.message)}
+  };
+  window.refreshProHub=function(){
+    const xp=Number(localStorage.getItem('brics_pro_xp')||0),lvl=Math.floor(xp/100)+1,cur=xp%100,played=Number(localStorage.getItem('brics_pro_played')||0),best=Number(localStorage.getItem('brics_record_local-precision')||0);
+    if($('proLevelText'))$('proLevelText').textContent='LVL '+lvl;if($('proXpBar'))$('proXpBar').style.width=cur+'%';if($('proXpText'))$('proXpText').textContent=cur+' / 100 XP';if($('proActivity'))$('proActivity').textContent=Math.min(100,played*4)+'%';
+    const ach=[['🎮','شروع بازی',played>=1],['🔥','۵ بازی',played>=5],['🏆','رکورد ۵۰',records()>=50],['💎','سطح ۳',lvl>=3]];const unlocked=ach.filter(x=>x[2]).length;if($('proAchievementCount'))$('proAchievementCount').textContent=unlocked+'/4';if($('proAchievements'))$('proAchievements').innerHTML=ach.map(x=>`<div class="pro-ach ${x[2]?'':'locked'}"><span class="ico">${x[0]}</span><div><b>${x[1]}</b><div class="pro-sub">${x[2]?'باز شده':'قفل است'}</div></div></div>`).join('');
+  };
+  function mount(){
+    addProGames();
+    const home=document.getElementById('page-home');if(home&&!document.getElementById('bricsProHub'))home.insertAdjacentHTML('beforeend',HTML_PRO);
+    refreshProHub();if(typeof renderGames==='function')renderGames();
+  }
+  const HTML_PRO=`
+<div class="pro-shell" id="bricsProHub">
+  <div class="pro-topline"><div><div class="pro-kicker">BRICS ULTRA PRO</div><b>مرکز پیشرفت حساب</b></div><span class="pro-live"><i></i> LIVE</span></div>
+  <div class="pro-grid">
+    <div class="pro-card"><div class="pro-kicker">XP / LEVEL</div><div class="pro-value" id="proLevelText">LVL 1</div><div class="pro-meter"><span id="proXpBar"></span></div><div class="pro-sub" id="proXpText">0 / 100 XP</div></div>
+    <div class="pro-card"><div class="pro-kicker">ACTIVITY</div><div class="pro-value" id="proActivity">0%</div><div class="pro-sub">فعالیت محلی این دستگاه</div></div>
+  </div>
+  <div class="pro-card"><div class="pro-topline"><b>🏅 دستاوردها</b><span class="pro-kicker" id="proAchievementCount">0/4</span></div><div class="pro-grid" style="margin-top:10px" id="proAchievements"></div></div>
+  <div class="pro-card"><div class="pro-topline"><b>🛡️ وضعیت حساب</b><span class="pill">PRO</span></div><div class="pro-grid" style="margin-top:10px"><div class="pro-ach"><span class="ico">🔐</span><div><b>جلسه امن</b><div class="pro-sub">توکن API فعال</div></div></div><div class="pro-ach"><span class="ico">⚙️</span><div><b>امتیازدهی</b><div class="pro-sub">ثبت نتیجه از مسیر بازی</div></div></div></div></div>
+</div>
+`;
+  setTimeout(mount,700);
+})();
+</script>
+</body>
+</html>
