@@ -25,6 +25,15 @@ function hashIp(ip) {
   return crypto.createHash("sha256").update(`${ip || ""}:${process.env.JWT_SECRET}`).digest("hex");
 }
 
+async function findActiveGame(idOrSlug) {
+  const key = String(idOrSlug || '').trim();
+  if (!key) return null;
+  if (mongoose.isValidObjectId(key)) {
+    return Game.findOne({ _id: key, isActive: true });
+  }
+  return Game.findOne({ slug: key.toLowerCase(), isActive: true });
+}
+
 router.get("/", async (req, res, next) => {
   try {
     const games = await Game.find({ isActive: true }).sort({ createdAt: -1 });
@@ -34,7 +43,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const game = await Game.findOne({ _id: req.params.id, isActive: true });
+    const game = await findActiveGame(req.params.id);
     if (!game) return res.status(404).json({ success: false, message: "Game not found" });
     res.json({ success: true, data: { game } });
   } catch (err) { next(err); }
@@ -42,7 +51,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/:id/start", requireAuth, async (req, res, next) => {
   try {
-    const game = await Game.findOne({ _id: req.params.id, isActive: true });
+    const game = await findActiveGame(req.params.id);
     if (!game) return res.status(404).json({ success: false, message: "Game not found" });
 
     const todayCount = await GameSession.countDocuments({
@@ -93,7 +102,7 @@ router.post("/:id/start", requireAuth, async (req, res, next) => {
 router.post("/:id/complete", requireAuth, async (req, res, next) => {
   const mongoSession = await mongoose.startSession();
   try {
-    const game = await Game.findOne({ _id: req.params.id, isActive: true });
+    const game = await findActiveGame(req.params.id);
     if (!game) return res.status(404).json({ success: false, message: "Game not found" });
 
     const sessionId = String(req.body.sessionId || "").trim();

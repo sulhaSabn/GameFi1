@@ -218,7 +218,7 @@ function showLoading(text,canRetry=false){$("loadingText").textContent=text||"د
 function toast(msg){$("toast").textContent=msg;$("toast").classList.remove("hidden");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),3500)}
 function showLogin(){$("loginBox").classList.remove("hidden");$("registerBox").classList.add("hidden")}
 function showRegister(){$("loginBox").classList.add("hidden");$("registerBox").classList.remove("hidden")}
-function openConfig(){ boot(); }
+function openConfig(){}
 function closeConfig(){}
 async function saveApiAndRetry(){await boot()}
 async function fetchWithTimeout(url,options={},ms=12000){const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);try{return await fetch(url,{...options,signal:c.signal})}finally{clearTimeout(t)}}
@@ -228,8 +228,12 @@ function extractToken(data){return data?.token||data?.accessToken||data?.data?.t
 async function login(){try{const email=$("loginEmail").value.trim().toLowerCase(),password=$("loginPassword").value;if(!email||!password)return toast('ایمیل و رمز عبور را وارد کنید.');const data=await api('/auth/login',{method:'POST',body:JSON.stringify({email,password})});token=extractToken(data);if(!token)throw new Error('توکن از سرور دریافت نشد.');localStorage.setItem(TOKEN_KEY,token);await startApp();toast('ورود موفق بود.')}catch(e){toast(e.message)}}
 async function register(){try{const username=$("regUsername").value.trim(),email=$("regEmail").value.trim().toLowerCase(),password=$("regPassword").value,referralCode=$("regReferral").value.trim();if(username.length<3||username.length>30)return toast('نام کاربری باید ۳ تا ۳۰ کاراکتر باشد.');if(!/^\S+@\S+\.\S+$/.test(email))return toast('ایمیل معتبر وارد کنید.');if(password.length<8)return toast('رمز عبور باید حداقل ۸ کاراکتر باشد.');const body={username,email,password};if(referralCode)body.referralCode=referralCode;const data=await api('/auth/register',{method:'POST',body:JSON.stringify(body)});token=extractToken(data);if(token){localStorage.setItem(TOKEN_KEY,token);await startApp();toast('حساب ساخته شد.')}else{showLogin();toast('ثبت‌نام انجام شد؛ اکنون وارد شوید.')}}catch(e){toast(e.message)}}
 async function startApp(){
-  $("auth").classList.add('hidden');$("app").classList.remove('hidden');$("loading").classList.add('hidden');
-  await refresh();await loadAds();go('home');
+  $("loading").classList.add('hidden');
+  $("auth").classList.add('hidden');
+  $("app").classList.remove('hidden');
+  go('home');
+  try{ await refresh(); }catch(e){ console.error(e); $('connection').textContent='اتصال برقرار نشد'; toast(e.message||'خطا در اتصال به سرور'); }
+  try{ await loadAds(); }catch(e){ console.warn('Ads:',e); }
 }
 async function refresh(){try{const data=await api('/auth/me');me=data?.data?.user||data?.user||data?.data||data;renderMe();const [g,t,w]=await Promise.allSettled([api('/games'),api('/users/transactions'),api('/withdrawals/my')]);if(g.status==='fulfilled'){games=extract(g.value,['games']).map(x=>({...x,id:x.slug||x.id}));renderGames()}else toast('فهرست بازی‌ها بارگذاری نشد.');if(t.status==='fulfilled')renderTransactions(extract(t.value,['transactions']));if(w.status==='fulfilled')renderWithdrawals(extract(w.value,['withdrawals']));$('connection').textContent='متصل';if(me.role==='admin')addAdminNav();else removeAdminNav()}catch(e){$('connection').textContent='خطا';throw e}}
 function renderMe(){const u=me||{},balance=u.points??u.coins??0;$('homeBalance').textContent=Number(balance).toLocaleString('en-US');$('walletBalance').textContent=Number(balance).toLocaleString('en-US');$('walletUsd').textContent='$'+Number(balance/1000000).toFixed(6);$('bestScore').textContent=Number(u.totalEarned||0).toLocaleString('en-US');$('level').textContent=Math.max(1,Math.floor(Number(u.totalEarned||0)/100)+1);$('gamesPlayed').textContent=Number(u.gamesPlayed||0).toLocaleString('en-US');$('usdtBalance').textContent=Number(u.totalWithdrawn||0).toLocaleString('en-US');$('profileUsername').value=u.username||'';$('profileEmail').value=u.email||'';$('referralCode').value=u.referralCode||'';refreshPremiumStats()}
@@ -399,17 +403,28 @@ function logout(show=true){token=null;me=null;activeGame=null;activeSessionId=nu
 function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}function escAttr(v){return esc(v).replace(/`/g,'&#096;')}function dateText(v){if(!v)return '';try{return new Date(v).toLocaleString('fa-AF')}catch(e){return ''}}function statusText(s){return({pending:'در انتظار',approved:'تایید شده',rejected:'رد شده',paid:'پرداخت شده'})[s]||s}function typeText(s){return({reward:'پاداش بازی',withdrawal:'برداشت',referral:'معرفی',admin_adjustment:'تعدیل مدیر'})[s]||s}
 $("profileUsername")?.addEventListener("input",autoSaveProfile);
 async function boot(){
-  $('apiLabel').textContent='gamefi1.onrender.com';$('loadingRetry').classList.add('hidden');$('loading').classList.remove('hidden');showLoading('در حال اتصال به سرور...',false);
-  try{
-    await api('/health');
+  $('loadingRetry').classList.add('hidden');
+  $('loading').classList.remove('hidden');
+  showLoading('در حال اتصال به سرور...',false);
+  if(!token){
     $('loading').classList.add('hidden');
-    if(token){await api('/auth/me');await startApp()}
-    else{$('auth').classList.remove('hidden');}
+    $('auth').classList.remove('hidden');
+    return;
+  }
+  try{
+    await api('/auth/me');
+    await startApp();
   }catch(e){
-    console.error('BRICS API:',e);$('loading').classList.add('hidden');$('auth').classList.remove('hidden');toast(e.message||'اتصال به سرور برقرار نشد.');
+    console.error(e);
+    localStorage.removeItem(TOKEN_KEY);
+    token=null;
+    $('loading').classList.add('hidden');
+    $('app').classList.add('hidden');
+    $('auth').classList.remove('hidden');
+    toast(e.message||'اتصال به سرور ناموفق بود.');
   }
 }
-boot();setTimeout(refreshPremiumStats,300);
+boot();setTimeout(refreshPremiumStats,300);setTimeout(()=>{if(!$('loading').classList.contains('hidden')){ $('loading').classList.add('hidden'); $('auth').classList.remove('hidden'); toast('زمان اتصال تمام شد؛ اتصال اینترنت و Backend را بررسی کنید.');}},15000);
 </script>
 
 <script id="brics-pro-script">
